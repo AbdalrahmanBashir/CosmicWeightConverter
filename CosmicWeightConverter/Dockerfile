@@ -4,6 +4,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-bookworm-slim AS base
 RUN apt-get update && \
     apt-get upgrade -y && \
+    apt-get install -y libpam0g zlib1g && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 USER $APP_UID
