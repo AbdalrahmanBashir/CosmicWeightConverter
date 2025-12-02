@@ -1,0 +1,24 @@
+name: CI Pipeline for Cosmic Weight Converter
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "9.0.0"
+      - name: Restore dependencies
+        run : dotnet restore CosmicWeightConverter/CosmicWeightConverter.csproj
+      - name: Build
+        run: dotnet build --no-restore CosmicWeightConverter/CosmicWeightConverter.csproj --configuration Release
+        
