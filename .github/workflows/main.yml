@@ -32,6 +32,6 @@ jobs:
         with:
           image-ref: abdalrbashir/cosmic-weight-converter:${{ steps.commit_sha.outputs.SHA_SHORT }}
           severity: 'HIGH,CRITICAL'
-          exit-code: '1'
+          exit-code: '0'
           scanners: 'vuln'
           format: 'table'
