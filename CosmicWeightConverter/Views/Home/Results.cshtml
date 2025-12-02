@@ -1,0 +1,42 @@
+﻿@model CosmicWeightConverter.ViewModels.CalculationResultViewModel
+
+<div style="background-color: #1a1a2e; color: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 0 20px rgba(59, 173, 245, 0.4);">
+
+    <h2 style="color: #64ffda; border-bottom: 2px solid #64ffda; padding-bottom: 10px; margin-bottom: 25px;">
+        Cosmic Weight Results
+    </h2>
+
+    <p style="font-size: 1.2rem; margin-bottom: 20px;">
+        Your Earth Weight: <strong style="color: #ffc107;">@Model.InputWeight</strong> @Model.ResultUnit
+    </p>
+
+    <hr style="border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: 20px; margin-bottom: 20px;">
+
+    <h3 style="color: #3bcef5; margin-bottom: 15px;">
+        Weight on Other Celestial Bodies:
+    </h3>
+
+    <table class="table" style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+        <thead>
+            <tr style="background-color: #2e4a66;">
+                <th style="padding: 16px; text-align: left; color: #4a6680; border: 1px solid #64ffda; font-weight: bold; font-size: 1.15rem;">Celestial Body</th>
+                <th style="padding: 16px; text-align: left; color: #4a6680; border: 1px solid #3bcef5; font-weight: bold; font-size: 1.15rem">Weight (@Model.ResultUnit)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var result in Model.CosmicWeights)
+            {
+                <tr style="background-color: #243b55;">
+                    <td style="padding: 16px; border: 1px solid #4a6680; color: #64ffda; font-weight: bold; font-size: 1.15rem;">@result.Key</td>
+                    <td style="padding: 16px; border: 1px solid #4a6680; color: #3bcef5; font-weight: bold; font-size: 1.15rem;">@result.Value</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p style="margin-top: 30px;">
+        <a href="/" style="color: #64ffda; text-decoration: none; font-weight: bold; border: 1px solid #64ffda; padding: 10px 15px; border-radius: 5px; display: inline-block;">
+            Calculate Another Weight
+        </a>
+    </p>
+</div>
