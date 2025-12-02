@@ -3,10 +3,10 @@ name: CI Pipeline for Cosmic Weight Converter
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
