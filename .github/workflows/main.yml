@@ -21,4 +21,7 @@ jobs:
         run : dotnet restore CosmicWeightConverter/CosmicWeightConverter.csproj
       - name: Build
         run: dotnet build --no-restore CosmicWeightConverter/CosmicWeightConverter.csproj --configuration Release
+      - name: Set up short commit SHA
+        id: commit_sha
+        run: echo "SHA_SHORT=$(echo ${{ github.sha }} | cut -c 1-7)" >> $GITHUB_OUTPUT
         
