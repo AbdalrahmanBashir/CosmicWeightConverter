@@ -24,4 +24,7 @@ jobs:
       - name: Set up short commit SHA
         id: commit_sha
         run: echo "SHA_SHORT=$(echo ${{ github.sha }} | cut -c 1-7)" >> $GITHUB_OUTPUT
+      - name: Build and Tag Docker Image
+        run: |
+          docker build -t abdalrbashir/cosmic-weight-converter:${{ steps.commit_sha.outputs.SHA_SHORT }} .
         
