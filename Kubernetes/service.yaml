@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cosmic-weight-converter
+  namespace: cosmic-weight-converter
+  labels:
+    app: cosmic-weight-converter
+spec:
+  selector:
+    app: cosmic-weight-converter
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
