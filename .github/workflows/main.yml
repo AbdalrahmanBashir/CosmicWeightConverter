@@ -58,5 +58,20 @@ jobs:
           echo "Updating deployment.yaml to image: ${NEW_IMAGE}"
           sed -i -E "s|image: .*|image: ${NEW_IMAGE}|" deployment.yaml
           grep -n "image:" -n deployment.yaml || true
+      - name: Commit and push GitOps change
+        working-directory: gitops
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add deployment.yaml
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "ci: update image to ${NEW_IMAGE}"
+            git push origin HEAD:main
+          fi
+          
+          
+          
           
         
