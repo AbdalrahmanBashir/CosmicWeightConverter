@@ -44,4 +44,19 @@ jobs:
       - name: Push Images
         run: |
           docker push abdalrbashir/cosmic-weight-converter:${{ steps.commit_sha.outputs.SHA_SHORT }}
+      - name: Checkout GitOps repo
+        uses: actions/checkout@v3
+        with:
+          repository: AbdalrahmanBashir/CosmicWeightConverter-GitOps
+          path: gitops
+          token: ${{ secrets.GITOPS_PAT }}
+      - name: Update deployment image in GitOps rep
+        working-directory: gitops
+        run: |
+          NEW_TAG=${{ steps.commit_sha.outputs.SHA_SHORT }}
+          NEW_IMAGE="abdalrbashir/cosmic-weight-converter:${NEW_TAG}"
+          echo "Updating deployment.yaml to image: ${NEW_IMAGE}"
+          sed -i -E "s|image: .*|image: ${NEW_IMAGE}|" deployment.yaml
+          grep -n "image:" -n deployment.yaml || true
+          
         
